@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async function ready() {
   function onClickTile(evt) {
     const clickedEl = evt.target;
 
-    // clicked on a board tile?
+    // Clicked on a board tile?
     if (clickedEl.matches('#board > div > div')) {
       Chessboard.highlight(clickedEl);
     } else {
