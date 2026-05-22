@@ -1,32 +1,26 @@
-import Chessboard from "./chessboard.js";
+import Chessboard from './chessboard.js';
 
+document.addEventListener('DOMContentLoaded', async function ready() {
+  const boardEl = document.getElementById('board');
+  const clearHighlightsBtn = document.getElementById('clear-highlights-btn');
 
-document.addEventListener("DOMContentLoaded",async function ready(){
-	var boardEl = document.getElementById("board");
-	var clearHighlightsBtn = document.getElementById("clear-highlights-btn");
+  function onClickTile(evt) {
+    const clickedEl = evt.target;
 
-	Chessboard.draw(boardEl);
+    // clicked on a board tile?
+    if (clickedEl.matches('#board > div > div')) {
+      Chessboard.highlight(clickedEl);
+    } else {
+      clearHighlights();
+    }
+  }
 
-	boardEl.addEventListener("click",onClickTile,false);
-	clearHighlightsBtn.addEventListener("click",clearHighlights,false);
+  function clearHighlights() {
+    Chessboard.highlight();
+  }
 
+  Chessboard.draw(boardEl);
 
-	// ********************************
-
-	function onClickTile(evt) {
-		var clickedEl = evt.target;
-
-		// clicked on a board tile?
-		if (clickedEl.matches("#board > div > div")) {
-			Chessboard.highlight(clickedEl);
-		}
-		else {
-			clearHighlights();
-		}
-	}
-
-	function clearHighlights() {
-		Chessboard.highlight();
-	}
-
+  boardEl.addEventListener('click', onClickTile, false);
+  clearHighlightsBtn.addEventListener('click', clearHighlights, false);
 });
